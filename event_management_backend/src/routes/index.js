@@ -1,5 +1,7 @@
 const express = require('express');
 const healthController = require('../controllers/health');
+const authRoutes = require('./auth');
+const eventRoutes = require('./events');
 
 const router = express.Router();
 // Health endpoint
@@ -31,5 +33,9 @@ const router = express.Router();
  *                   example: development
  */
 router.get('/', healthController.check.bind(healthController));
+
+// Mount resource routes
+router.use('/auth', authRoutes);
+router.use('/events', eventRoutes);
 
 module.exports = router;
